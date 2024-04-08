@@ -15,10 +15,13 @@ def read_data(file_name, field):
     file_path = os.path.join(cwd_path, file_name)
     with open(file_path, "r") as file_obj:
         data = json.load(file_obj)
-        for dat in data:
-            if dat == data[field]:
-                val = data.values()
-                return val
+        hod = data.keys()
+        for dat in hod:
+            if dat == field:
+                value = data[field]
+                return value
+        return None
+
 
 
 
