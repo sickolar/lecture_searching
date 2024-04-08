@@ -21,19 +21,24 @@ def read_data(file_name, field):
                 value = data[field]
                 return value
         return None
-
-
-
-
-
-
-
-
-
+def linear_search(sekvence, cislo):
+    slovnik = {"index": "", "count": ""}
+    list = []
+    i = 0
+    pocet = 0
+    for cis in sekvence:
+        i = i + 1
+        if cis == cislo:
+            pocet = pocet + 1
+            list.append(i)
+    slovnik["count"] = pocet
+    slovnik["index"] = list
+    return slovnik
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
-
+    lin = linear_search(sequential_data, 9)
+    print(lin)
 
 if __name__ == '__main__':
     main()
