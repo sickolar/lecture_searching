@@ -21,24 +21,42 @@ def read_data(file_name, field):
                 value = data[field]
                 return value
         return None
+
+
 def linear_search(sekvence, cislo):
     slovnik = {"index": "", "count": ""}
     list = []
-    i = 0
     pocet = 0
-    for cis in sekvence:
-        i = i + 1
+
+    for i,cis in enumerate(sekvence):
         if cis == cislo:
             pocet = pocet + 1
             list.append(i)
     slovnik["count"] = pocet
     slovnik["index"] = list
     return slovnik
+
+
+def pattern_search(sekvence, vzor):
+    delka_vzoru = len(vzor)
+    delka_sekvence = len(sekvence)
+    mnoz = []
+    for i in range(delka_sekvence - delka_vzoru + 1):
+        window_1 = sekvence[i:i + delka_vzoru]
+        if window_1 == vzor:
+            mnoz.append(i)
+
+    return mnoz
+
+
 def main():
     sequential_data = read_data("sequential.json", "unordered_numbers")
     print(sequential_data)
     lin = linear_search(sequential_data, 9)
     print(lin)
+    sequential_dna = read_data("sequential.json", "dna_sequence")
+    part = pattern_search(sequential_dna, "ATA")
+    print(part)
 
 if __name__ == '__main__':
     main()
